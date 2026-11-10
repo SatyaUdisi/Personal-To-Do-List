@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal To-Do List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="workspace">
+  <header class="topbar"><h1>Personal To-Do List</h1><input id="search" placeholder="Search..." aria-label="Search tasks"></header>
+  <section class="content">
+    <form id="task-form" class="composer">
+      <input type="hidden" id="task-id">
+      <div class="mode"><span>Todo</span></div>
+      <div class="form-row">
+        <input id="task-name" placeholder="What needs to be done?" required>
+        <select id="task-cat"><option>Study</option><option>Personal</option><option>Work</option><option>Health</option><option>Other</option></select>
+        <select id="task-priority"><option>Low</option><option selected>Medium</option><option>High</option></select>
+        <select id="task-status"><option>Pending</option><option>Completed</option></select>
+        <label class="date-field">Due date (optional)<input type="date" id="task-date" aria-label="Due date"></label>
+        <button type="submit" id="sub-btn">Add Todo</button>
+        <button type="button" id="cancel-btn" class="cancel" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <section class="cards" aria-label="Task summaries">
+      <button class="card backlog" onclick="showTasks('backlog')"><span>Backlog</span><b>◷</b><strong id="backlog-count">0</strong><small id="backlog-detail">Overdue and unscheduled</small><i id="backlog-bar"></i></button>
+      <button class="card today" onclick="showTasks('today')"><span>Today's Tasks</span><b>☷</b><strong id="today-count">0</strong><small id="today-detail">Completed 0 · Pending 0</small><i id="today-bar"></i></button>
+      <button class="card tomorrow" onclick="showTasks('tomorrow')"><span>Tomorrow's Tasks</span><b>▦</b><strong id="tomorrow-count">0</strong><small id="tomorrow-detail">Completed 0 · Pending 0</small><i id="tomorrow-bar"></i></button>
+      <button class="card week" onclick="showTasks('week')"><span>This Week's Tasks</span><b>▦</b><strong id="week-count">0</strong><small id="week-detail">Completed 0 · Pending 0</small><i id="week-bar"></i></button>
+    </section>
+
+    <nav class="tabs" aria-label="Task views">
+      <button class="view-btn" data-view="today" onclick="showTasks('today')">Today</button>
+      <button class="view-btn" data-view="week" onclick="showTasks('week')">Weekly</button>
+      <button class="view-btn" data-view="backlog" onclick="showTasks('backlog')">Backlog</button>
+      <button class="view-btn" data-view="all" onclick="showTasks('all')">All Tasks</button>
+    </nav>
+    <p id="view-summary" class="view-summary" aria-live="polite" hidden></p>
+    <div class="filters">
+      <select id="filter-cat"><option value="all">All Categories</option><option>Study</option><option>Personal</option><option>Work</option><option>Health</option><option>Other</option></select>
+      <select id="filter-priority"><option value="all">All Priorities</option><option>High</option><option>Medium</option><option>Low</option></select>
+      <select id="filter-status"><option value="all">All Statuses</option><option>Pending</option><option>Completed</option></select>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Task</th><th>Category</th><th>Priority</th><th>Status</th><th>Due Date</th><th>Actions</th></tr></thead><tbody id="task-tbody"></tbody></table>
+      <div id="no-task">No tasks found.</div>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
