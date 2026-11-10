@@ -120,21 +120,3 @@ No compilation, terminal configuration, or web server installation is required.
    ```
 2. Double-click **`index.html`** or right-click **`index.html`** &rarr; **Open with** &rarr; Select your preferred browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, or Brave).
 3. The application will immediately load with default sample tasks ready for demonstration.
-
----
-
-## 6. College Project Evaluation (Viva Voce Questions & Answers)
-
-Here are common questions college evaluators ask during mini-project viva evaluations:
-
-**Q1: How does data persistence work without a backend database like MySQL or MongoDB?**  
-> *Answer:* The application uses the HTML5 Web Storage API (`window.localStorage`). Data is serialized into a JSON string using `JSON.stringify()` when saving and deserialized back into a JavaScript object array using `JSON.parse()` when loading. It remains stored locally inside the user's browser client.
-
-**Q2: How does the application handle input validation and prevent empty submissions?**  
-> *Answer:* In `script.js`, the `handleFormSubmit()` function validates `taskNameInput.value.trim()`. If the input is empty or contains only whitespace, execution stops, an alert is displayed, and focus is returned to the input field.
-
-**Q3: How are XSS (Cross-Site Scripting) vulnerabilities prevented when rendering user tasks?**  
-> *Answer:* An `escapeHtml()` utility function sanitizes user input by converting dangerous characters (`<`, `>`, `&`, `"`, `'`) into their corresponding HTML entity codes before injection into the DOM.
-
-**Q4: How does the search and filter mechanism work simultaneously?**  
-> *Answer:* The `renderTasks()` function runs array filtering (`Array.prototype.filter()`) on the master `tasks` array using four simultaneous conditions: substring matching on the task title, category equality, priority equality, and status equality. The filtered array is then rendered to the table.
